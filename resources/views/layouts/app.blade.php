@@ -76,77 +76,75 @@
                                 <div data-i18n="Analytics">Dashboard</div>
                             </a>
                         </li>
-                        Super Admins
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                                <div data-i18n="Analytics">Admins</div>
-                            </a>
-                        </li>
 
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                                <div data-i18n="Analytics">Users</div>
-                            </a>
-                        </li>
+                        @role('User')
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                                    <div data-i18n="Analytics">Complaints</div>
+                                </a>
+                            </li>
+                        @endrole
 
-                        Admins
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                                <div data-i18n="Analytics">Officers</div>
-                            </a>
-                        </li>
+                        @role('Super-admin')
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                                    <div data-i18n="Analytics">Admins</div>
+                                </a>
+                            </li>
 
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                                <div data-i18n="Analytics">Complaints</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                                <div data-i18n="Analytics">Investigations</div>
-                            </a>
-                        </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                                    <div data-i18n="Analytics">Users</div>
+                                </a>
+                            </li>
 
-                        {{-- <!-- Layouts -->
-                        <li class="menu-item">
-                            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                <i class="menu-icon tf-icons bx bx-layout"></i>
-                                <div data-i18n="Layouts">Layouts</div>
-                            </a>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                                    <div data-i18n="Analytics">Officers</div>
+                                </a>
+                            </li>
 
-                            <ul class="menu-sub">
-                                <li class="menu-item">
-                                    <a href="layouts-without-menu.html" class="menu-link">
-                                        <div data-i18n="Without menu">Without menu</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="layouts-without-navbar.html" class="menu-link">
-                                        <div data-i18n="Without navbar">Without navbar</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="layouts-container.html" class="menu-link">
-                                        <div data-i18n="Container">Container</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="layouts-fluid.html" class="menu-link">
-                                        <div data-i18n="Fluid">Fluid</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="layouts-blank.html" class="menu-link">
-                                        <div data-i18n="Blank">Blank</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> --}}
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                                    <div data-i18n="Analytics">Complaints</div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                                    <div data-i18n="Analytics">Investigations</div>
+                                </a>
+                            </li>
+                        @endrole
+
+                        @role('Admin')
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                                    <div data-i18n="Analytics">Officers</div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                                    <div data-i18n="Analytics">Complaints</div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                                    <div data-i18n="Analytics">Investigations</div>
+                                </a>
+                            </li>
+                        @endrole
 
                     </ul>
                 </aside>
