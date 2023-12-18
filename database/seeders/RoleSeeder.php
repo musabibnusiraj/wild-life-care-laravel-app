@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
@@ -14,7 +15,8 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         $superadminRole = Role::create(['name' => 'Super-Admin']);
-        $superadminRole->givePermissionTo('all');
+        $permissions = Permission::all();
+        $superadminRole->syncPermissions($permissions);
 
         $adminRole = Role::create(['name' => 'Admin']);
         $adminRole->givePermissionTo('edit-officers');
@@ -23,21 +25,21 @@ class RoleSeeder extends Seeder
         $adminRole->givePermissionTo('create-officers');
         $adminRole->givePermissionTo('update-officers');
 
-        $adminRole->givePermissionTo('edit-complaints');
         $adminRole->givePermissionTo('view-complaints');
-        $adminRole->givePermissionTo('create-complaints');
         $adminRole->givePermissionTo('update-complaints');
+        $adminRole->givePermissionTo('edit-complaints');
 
         $adminRole->givePermissionTo('edit-investigations');
         $adminRole->givePermissionTo('view-investigations');
         $adminRole->givePermissionTo('create-investigations');
         $adminRole->givePermissionTo('update-investigations');
+        $adminRole->givePermissionTo('delete-investigations');
 
-        $officerRole = Role::create(['name' => 'Officers']);
-        $officerRole->givePermissionTo('edit-investigations');
+        $officerRole = Role::create(['name' => 'Officer']);
         $officerRole->givePermissionTo('view-investigations');
-        $officerRole->givePermissionTo('create-investigations');
         $officerRole->givePermissionTo('update-investigations');
+        $officerRole->givePermissionTo('edit-investigations');
+        $adminRole->givePermissionTo('view-complaints');
 
         $userRole = Role::create(['name' => 'User']);
         $userRole->givePermissionTo('edit-complaints');
