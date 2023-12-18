@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Wild Life Cares') }}</title>
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('../assets/img/favicon/favicon.ico') }}" />
@@ -78,6 +78,12 @@
                         </li>
 
                         @role('User')
+                            <li class="menu-item">
+                                <a href="{{ route('complaint.create') }}" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                                    <div data-i18n="Analytics">Create Complaint</div>
+                                </a>
+                            </li>
                             <li class="menu-item">
                                 <a href="{{ route('complaint.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
