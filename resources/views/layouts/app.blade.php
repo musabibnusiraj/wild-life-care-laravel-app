@@ -79,44 +79,46 @@
 
                         @role('User')
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('complaint.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
                                     <div data-i18n="Analytics">Complaints</div>
                                 </a>
                             </li>
                         @endrole
 
-                        @role('Super-admin')
+                        @role('Super-Admin')
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('institution.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                                    <div data-i18n="Analytics">Admins</div>
+                                    <div data-i18n="Analytics">Institutions</div>
                                 </a>
                             </li>
 
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                {{-- Link to the index action --}}
+                                <a href="{{ route('customer.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                                    <div data-i18n="Analytics">Users</div>
+                                    <div data-i18n="Analytics">Customers</div>
                                 </a>
                             </li>
 
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                {{-- Link to the index action --}}
+                                <a href="{{ route('officer.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
                                     <div data-i18n="Analytics">Officers</div>
                                 </a>
                             </li>
 
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('complaint.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
                                     <div data-i18n="Analytics">Complaints</div>
                                 </a>
                             </li>
 
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('investigation.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
                                     <div data-i18n="Analytics">Investigations</div>
                                 </a>
@@ -125,21 +127,21 @@
 
                         @role('Admin')
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('officer.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
                                     <div data-i18n="Analytics">Officers</div>
                                 </a>
                             </li>
 
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('complaint.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
                                     <div data-i18n="Analytics">Complaints</div>
                                 </a>
                             </li>
 
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('investigation.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
                                     <div data-i18n="Analytics">Investigations</div>
                                 </a>
@@ -148,14 +150,14 @@
 
                         @role('Officer')
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('complaint.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
                                     <div data-i18n="Analytics">Complaints</div>
                                 </a>
                             </li>
 
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('investigation.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
                                     <div data-i18n="Analytics">Investigations</div>
                                 </a>
@@ -217,7 +219,7 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        <li>
+                                        {{-- <li>
                                             <div class="dropdown-divider"></div>
                                         </li>
                                         <li>
@@ -244,7 +246,7 @@
                                         </li>
                                         <li>
                                             <div class="dropdown-divider"></div>
-                                        </li>
+                                        </li> --}}
                                         <li>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
