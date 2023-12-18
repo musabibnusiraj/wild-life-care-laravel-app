@@ -146,7 +146,6 @@
                             </li>
                         @endrole
 
-
                         @role('Officer')
                             <li class="menu-item">
                                 <a href="#" class="menu-link">
@@ -162,7 +161,6 @@
                                 </a>
                             </li>
                         @endrole
-
                     </ul>
                 </aside>
                 <!-- / Menu -->
