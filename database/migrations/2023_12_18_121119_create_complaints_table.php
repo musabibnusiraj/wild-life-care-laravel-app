@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('assigned_officer_id')->nullable();
             $table->string('subject');
             $table->text('description');
+
             $table->enum('status', ['submitted', 'in_progress', 'resolved'])->default('submitted');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
