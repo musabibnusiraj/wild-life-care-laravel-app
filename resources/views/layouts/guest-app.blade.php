@@ -11,7 +11,6 @@
     <title>{{ config('app.name', 'Wild Life Care') }}</title>
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('../assets/img/favicon/favicon.ico') }}" />
