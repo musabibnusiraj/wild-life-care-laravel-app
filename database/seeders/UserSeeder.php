@@ -46,7 +46,12 @@ class UserSeeder extends Seeder
         $admin1->assignRole($adminRole);
         Institution::create([
             'user_id' => $admin1->id,
-            'type' => 'wildlife'
+            'type' => 'wildlife',
+            'name' => 'Wild Life Care Center',
+            'phone' => '0755555555',
+            'address' => 'Dubai main road',
+            'address_2' => 'Dubai kurukku sandhu',
+            'branch' => 'puttalam'
         ]);
 
         $officer1 = \App\Models\User::factory()->create([
@@ -57,7 +62,11 @@ class UserSeeder extends Seeder
         $officer1->assignRole($officerRole);
         Officer::create([
             'user_id' => $officer1->id,
-            'admin_id' => $admin1->id
+            'admin_id' => $admin1->id,
+            'phone' => '0755555555',
+            'address' => 'Main road colombo',
+            'address_2' => 'Dubai kurukku sandhu',
+            'badge_number' => 'QWERTY'
         ]);
 
         // ----------------Forestry--------------
@@ -70,7 +79,12 @@ class UserSeeder extends Seeder
         $admin2->assignRole($adminRole);
         Institution::create([
             'user_id' => $admin2->id,
-            'type' => 'forestry'
+            'type' => 'forestry',
+            'name' => 'Wild Life Care Center',
+            'phone' => '0755555555',
+            'address' => 'Dubai main road',
+            'address_2' => 'Dubai kurukku sandhu',
+            'branch' => 'puttalam'
         ]);
 
         $officer2 = \App\Models\User::factory()->create([
@@ -81,7 +95,11 @@ class UserSeeder extends Seeder
         $officer2->assignRole($officerRole);
         Officer::create([
             'user_id' => $officer2->id,
-            'admin_id' => $admin2->id
+            'admin_id' => $admin2->id,
+            'phone' => '0755555555',
+            'address' => 'Dubai main road',
+            'address_2' => 'Dubai kurukku sandhu',
+            'badge_number' => 'QWERTY2'
         ]);
 
 
@@ -95,7 +113,12 @@ class UserSeeder extends Seeder
         $admin3->assignRole($adminRole);
         Institution::create([
             'user_id' => $admin3->id,
-            'type' => 'environmental_crime'
+            'type' => 'environmental_crime',
+            'name' => 'Environmental Care Center',
+            'phone' => '07999999',
+            'address' => 'Cross Street galle',
+            'address_2' => 'Dubai kurukku sandhu',
+            'branch' => 'puttalam'
         ]);
 
         $officer3 = \App\Models\User::factory()->create([
@@ -106,7 +129,11 @@ class UserSeeder extends Seeder
         $officer3->assignRole($officerRole);
         Officer::create([
             'user_id' => $officer3->id,
-            'admin_id' => $admin3->id
+            'admin_id' => $admin3->id,
+            'phone' => '07000000',
+            'address' => '1st Street Matara',
+            'address_2' => 'Dubai kurukku sandhu',
+            'badge_number' => 'QWERTY3'
         ]);
 
         // --------------Public----User--------------
@@ -120,6 +147,9 @@ class UserSeeder extends Seeder
 
         Customer::create([
             'user_id' => $user->id,
+            'phone' => '0755555555',
+            'address' => 'Dubai main road',
+            'address_2' => 'Dubai kurukku sandhu'
         ]);
     }
 }

@@ -16,9 +16,9 @@ class CustomerController extends Controller
         // Get customers based on users with the "User" role
         $customers = Customer::whereHas('user', function ($query) {
             $query->role('User');
-        })->get();
+        })->with('user')->get();
 
-        return view('customers.view-customers', compact('customers', 'data'));
+        return view('customers.view-customers', compact('customers'));
     }
 
     /**

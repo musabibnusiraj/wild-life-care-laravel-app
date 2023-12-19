@@ -104,7 +104,7 @@
                                 {{-- Link to the index action --}}
                                 <a href="{{ route('customer.index') }}" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                                    <div data-i18n="Analytics">Customers</div>
+                                    <div data-i18n="Analytics">Complainers</div>
                                 </a>
                             </li>
 

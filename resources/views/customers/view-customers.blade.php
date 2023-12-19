@@ -4,14 +4,14 @@
     <div class="container">
         <!-- Basic Bootstrap Table -->
         <div class="card">
-            <h5 class="card-header">Customers</h5>
+            <h5 class="card-header">Complainers</h5>
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Users</th>
+                            <th>Phone</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -20,9 +20,10 @@
                         @foreach ($customers as $customer)
                             <tr>
                                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                    <strong>{{ $customer->name }}</strong>
+                                    <strong>{{ $customer->user->name }}</strong>
                                 </td>
-                                <td>{{ $customer->email }}</td>
+                                <td>{{ $customer->user->email }}</td>
+                                <td>{{ $customer->phone }}</td>
                                 <td>
                                     <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                         <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
