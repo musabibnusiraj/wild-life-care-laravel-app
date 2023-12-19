@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('address_2')->nullable();
             $table->text('phone')->nullable();
             $table->text('branch')->nullable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@ class Institution extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'name', 'address', 'address_2', 'phone', 'branch', 'type'];
+    protected $fillable = ['user_id', 'name', 'address', 'address_2', 'phone', 'branch', 'type', 'status'];
 
     // Institution can have multiple officers
     public function officers()

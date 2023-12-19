@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('address_2')->nullable();
             $table->text('phone')->nullable();
             $table->text('badge_number')->nullable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

@@ -17,12 +17,12 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($data as $d)
+                        @foreach ($customers as $customer)
                             <tr>
                                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                    <strong>{{ $d->address }}</strong>
+                                    <strong>{{ $customer->name }}</strong>
                                 </td>
-                                <td>{{ $d->address_2 }}</td>
+                                <td>{{ $customer->email }}</td>
                                 <td>
                                     <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                         <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
