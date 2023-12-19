@@ -9,6 +9,23 @@ class Complaint extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'institution_id', 'subject', 'description', 'status', 'assigned_officer_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function attachments()
+    {
+        return $this->hasMany(Attachment::class);
+    }
+
+    public function locations()
+    {
+        return $this->hasMany(Location::class);
+    }
+
     // Get the assigned officer
     public function assignedOfficer()
     {

@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `complaints` (
   `assigned_officer_id` bigint(20) unsigned DEFAULT NULL,
   `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `institution_id` bigint(20) unsigned DEFAULT NULL,
   `status` enum('submitted','in_progress','resolved') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'submitted',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -68,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
 -- Dumping data for table wild-life-care-laravel-app.customers: ~1 rows (approximately)
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
 INSERT INTO `customers` (`id`, `user_id`, `address`, `address_2`, `phone`, `created_at`, `updated_at`) VALUES
-	(1, 8, NULL, NULL, NULL, '2023-12-19 18:43:57', '2023-12-19 18:43:57');
+	(1, 8, NULL, NULL, NULL, '2023-12-19 19:21:45', '2023-12-19 19:21:45');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 
 -- Dumping structure for table wild-life-care-laravel-app.failed_jobs
@@ -107,9 +108,9 @@ CREATE TABLE IF NOT EXISTS `institutions` (
 -- Dumping data for table wild-life-care-laravel-app.institutions: ~3 rows (approximately)
 /*!40000 ALTER TABLE `institutions` DISABLE KEYS */;
 INSERT INTO `institutions` (`id`, `user_id`, `name`, `type`, `address`, `address_2`, `phone`, `branch`, `created_at`, `updated_at`) VALUES
-	(1, 2, NULL, 'wildlife', NULL, NULL, NULL, NULL, '2023-12-19 18:43:56', '2023-12-19 18:43:56'),
-	(2, 4, NULL, 'forestry', NULL, NULL, NULL, NULL, '2023-12-19 18:43:56', '2023-12-19 18:43:56'),
-	(3, 6, NULL, 'environmental_crime', NULL, NULL, NULL, NULL, '2023-12-19 18:43:57', '2023-12-19 18:43:57');
+	(1, 2, NULL, 'wildlife', NULL, NULL, NULL, NULL, '2023-12-19 19:21:44', '2023-12-19 19:21:44'),
+	(2, 4, NULL, 'forestry', NULL, NULL, NULL, NULL, '2023-12-19 19:21:44', '2023-12-19 19:21:44'),
+	(3, 6, NULL, 'environmental_crime', NULL, NULL, NULL, NULL, '2023-12-19 19:21:45', '2023-12-19 19:21:45');
 /*!40000 ALTER TABLE `institutions` ENABLE KEYS */;
 
 -- Dumping structure for table wild-life-care-laravel-app.investigations
@@ -217,6 +218,7 @@ CREATE TABLE IF NOT EXISTS `officers` (
   `address` text COLLATE utf8mb4_unicode_ci,
   `address_2` text COLLATE utf8mb4_unicode_ci,
   `phone` text COLLATE utf8mb4_unicode_ci,
+  `badge_number` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -225,10 +227,10 @@ CREATE TABLE IF NOT EXISTS `officers` (
 
 -- Dumping data for table wild-life-care-laravel-app.officers: ~3 rows (approximately)
 /*!40000 ALTER TABLE `officers` DISABLE KEYS */;
-INSERT INTO `officers` (`id`, `user_id`, `admin_id`, `address`, `address_2`, `phone`, `created_at`, `updated_at`) VALUES
-	(1, 3, 2, NULL, NULL, NULL, '2023-12-19 18:43:56', '2023-12-19 18:43:56'),
-	(2, 5, 4, NULL, NULL, NULL, '2023-12-19 18:43:57', '2023-12-19 18:43:57'),
-	(3, 7, 6, NULL, NULL, NULL, '2023-12-19 18:43:57', '2023-12-19 18:43:57');
+INSERT INTO `officers` (`id`, `user_id`, `admin_id`, `address`, `address_2`, `phone`, `badge_number`, `created_at`, `updated_at`) VALUES
+	(1, 3, 2, NULL, NULL, NULL, NULL, '2023-12-19 19:21:44', '2023-12-19 19:21:44'),
+	(2, 5, 4, NULL, NULL, NULL, NULL, '2023-12-19 19:21:44', '2023-12-19 19:21:44'),
+	(3, 7, 6, NULL, NULL, NULL, NULL, '2023-12-19 19:21:45', '2023-12-19 19:21:45');
 /*!40000 ALTER TABLE `officers` ENABLE KEYS */;
 
 -- Dumping structure for table wild-life-care-laravel-app.password_resets
@@ -269,31 +271,31 @@ CREATE TABLE IF NOT EXISTS `permissions` (
 -- Dumping data for table wild-life-care-laravel-app.permissions: ~25 rows (approximately)
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-	(1, 'edit-users', 'web', '2023-12-19 18:43:51', '2023-12-19 18:43:51'),
-	(2, 'delete-users', 'web', '2023-12-19 18:43:52', '2023-12-19 18:43:52'),
-	(3, 'view-users', 'web', '2023-12-19 18:43:52', '2023-12-19 18:43:52'),
-	(4, 'create-users', 'web', '2023-12-19 18:43:52', '2023-12-19 18:43:52'),
-	(5, 'update-users', 'web', '2023-12-19 18:43:52', '2023-12-19 18:43:52'),
-	(6, 'edit-complaints', 'web', '2023-12-19 18:43:52', '2023-12-19 18:43:52'),
-	(7, 'delete-complaints', 'web', '2023-12-19 18:43:52', '2023-12-19 18:43:52'),
-	(8, 'view-complaints', 'web', '2023-12-19 18:43:52', '2023-12-19 18:43:52'),
-	(9, 'create-complaints', 'web', '2023-12-19 18:43:52', '2023-12-19 18:43:52'),
-	(10, 'update-complaints', 'web', '2023-12-19 18:43:52', '2023-12-19 18:43:52'),
-	(11, 'edit-investigations', 'web', '2023-12-19 18:43:52', '2023-12-19 18:43:52'),
-	(12, 'delete-investigations', 'web', '2023-12-19 18:43:52', '2023-12-19 18:43:52'),
-	(13, 'view-investigations', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(14, 'create-investigations', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(15, 'update-investigations', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(16, 'edit-officers', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(17, 'delete-officers', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(18, 'view-officers', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(19, 'create-officers', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(20, 'update-officers', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(21, 'edit-admins', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(22, 'delete-admins', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(23, 'view-admins', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(24, 'create-admins', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(25, 'update-admins', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53');
+	(1, 'edit-users', 'web', '2023-12-19 19:21:39', '2023-12-19 19:21:39'),
+	(2, 'delete-users', 'web', '2023-12-19 19:21:39', '2023-12-19 19:21:39'),
+	(3, 'view-users', 'web', '2023-12-19 19:21:39', '2023-12-19 19:21:39'),
+	(4, 'create-users', 'web', '2023-12-19 19:21:39', '2023-12-19 19:21:39'),
+	(5, 'update-users', 'web', '2023-12-19 19:21:39', '2023-12-19 19:21:39'),
+	(6, 'edit-complaints', 'web', '2023-12-19 19:21:39', '2023-12-19 19:21:39'),
+	(7, 'delete-complaints', 'web', '2023-12-19 19:21:39', '2023-12-19 19:21:39'),
+	(8, 'view-complaints', 'web', '2023-12-19 19:21:39', '2023-12-19 19:21:39'),
+	(9, 'create-complaints', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(10, 'update-complaints', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(11, 'edit-investigations', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(12, 'delete-investigations', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(13, 'view-investigations', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(14, 'create-investigations', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(15, 'update-investigations', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(16, 'edit-officers', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(17, 'delete-officers', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(18, 'view-officers', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(19, 'create-officers', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(20, 'update-officers', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(21, 'edit-admins', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(22, 'delete-admins', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(23, 'view-admins', 'web', '2023-12-19 19:21:40', '2023-12-19 19:21:40'),
+	(24, 'create-admins', 'web', '2023-12-19 19:21:41', '2023-12-19 19:21:41'),
+	(25, 'update-admins', 'web', '2023-12-19 19:21:41', '2023-12-19 19:21:41');
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 
 -- Dumping structure for table wild-life-care-laravel-app.personal_access_tokens
@@ -331,10 +333,10 @@ CREATE TABLE IF NOT EXISTS `roles` (
 -- Dumping data for table wild-life-care-laravel-app.roles: ~4 rows (approximately)
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-	(1, 'Super-Admin', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(2, 'Admin', 'web', '2023-12-19 18:43:53', '2023-12-19 18:43:53'),
-	(3, 'Officer', 'web', '2023-12-19 18:43:54', '2023-12-19 18:43:54'),
-	(4, 'User', 'web', '2023-12-19 18:43:55', '2023-12-19 18:43:55');
+	(1, 'Super-Admin', 'web', '2023-12-19 19:21:41', '2023-12-19 19:21:41'),
+	(2, 'Admin', 'web', '2023-12-19 19:21:41', '2023-12-19 19:21:41'),
+	(3, 'Officer', 'web', '2023-12-19 19:21:41', '2023-12-19 19:21:41'),
+	(4, 'User', 'web', '2023-12-19 19:21:42', '2023-12-19 19:21:42');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 
 -- Dumping structure for table wild-life-care-laravel-app.role_has_permissions
@@ -416,14 +418,14 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table wild-life-care-laravel-app.users: ~8 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `google_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'Super-Admin User', 'superadmin@example.com', '2023-12-19 18:43:56', '$2y$10$B6WfBHPpvb.YfEzDkIxcieK.YmJ7IcJEkKZjGx/XWZXqQMvWaDtFm', NULL, 'bTTCQz66a3', '2023-12-19 18:43:56', '2023-12-19 18:43:56'),
-	(2, 'Wildlife Admin', 'wildlife@example.com', '2023-12-19 18:43:56', '$2y$10$Uaxp9yGYprwHcJNFOpC/H.N9/UdRaiNcmu5PiiTda55N8Nn/e8SRS', NULL, 'nKTU0bloPO', '2023-12-19 18:43:56', '2023-12-19 18:43:56'),
-	(3, 'Mr.Been Officer ', 'officer@example.com', '2023-12-19 18:43:56', '$2y$10$uTDCgGYRsUb0VuVpeN1OF.LOSFIqmYe7Abt1Hxx1Xkf6MK5gV.Hfe', NULL, 'OpL9cyjRo4', '2023-12-19 18:43:56', '2023-12-19 18:43:56'),
-	(4, 'Forestry Admin', 'forestry@example.com', '2023-12-19 18:43:56', '$2y$10$uKEJ0iDpRznyuMNqTOFxWeUm5ULdUpu.RiQyhWBhO844eOQZjWTV6', NULL, 'PsOb6ZUUgd', '2023-12-19 18:43:56', '2023-12-19 18:43:56'),
-	(5, 'Bruce Lee Officer ', 'officer2@example.com', '2023-12-19 18:43:57', '$2y$10$RLBAW/GcMwJEDsg4ncHBReNVTnJz71D.1KfvcWfqWlgW2arGQjU6.', NULL, 'Y2G61oJmWT', '2023-12-19 18:43:57', '2023-12-19 18:43:57'),
-	(6, 'Environmental crime Admin', 'environmental@example.com', '2023-12-19 18:43:57', '$2y$10$Sy62ori/5zEqvHZjSY4oReBm.xY.GkXJ9g6AtS2/RVfprjR06ISLu', NULL, 'e3476Ch5Ce', '2023-12-19 18:43:57', '2023-12-19 18:43:57'),
-	(7, 'Bruce Officer ', 'officer3@example.com', '2023-12-19 18:43:57', '$2y$10$DVL/L3wJFfhDT2P9WX3c/uvD2ciXxDTxANLHRqAdPTwJl5gKuU/BG', NULL, 'kd6JwkmRAT', '2023-12-19 18:43:57', '2023-12-19 18:43:57'),
-	(8, 'Public User', 'user@example.com', '2023-12-19 18:43:57', '$2y$10$JmMhuPN1Mz6JxUEnXHDK3.3b9xtqnM0ksEYmrFlyN7F4FhIlnoKy.', NULL, 'aKNIX0ymiY', '2023-12-19 18:43:57', '2023-12-19 18:43:57');
+	(1, 'Super-Admin User', 'superadmin@example.com', '2023-12-19 19:21:44', '$2y$10$hZFmLVWJ7SLc27h56QkS4uVLENYd2ODM0G31L.opaqC6XSYdWS9UK', NULL, 'hVxtjgiUrm', '2023-12-19 19:21:44', '2023-12-19 19:21:44'),
+	(2, 'Wildlife Admin', 'wildlife@example.com', '2023-12-19 19:21:44', '$2y$10$0//4A7.fcvnmoklQAZWEeeIwAh3wMWsIAIQ.c2mhUm/vqck4dncxK', NULL, 'UBjZIsJYF0', '2023-12-19 19:21:44', '2023-12-19 19:21:44'),
+	(3, 'Mr.Been Officer ', 'officer@example.com', '2023-12-19 19:21:44', '$2y$10$JWrIDLb4Yo25RwRLj.sG8OMDVcOrfxnJZBIgLuA9p4eq6/YpV5p5u', NULL, '9s8sO9Opai', '2023-12-19 19:21:44', '2023-12-19 19:21:44'),
+	(4, 'Forestry Admin', 'forestry@example.com', '2023-12-19 19:21:44', '$2y$10$Ep3C3rgr4LBLkEdenTGhzuPNfgSZopQMHiEDplvpRzZlPDHJz8/eC', NULL, 'skwBTlXV22', '2023-12-19 19:21:44', '2023-12-19 19:21:44'),
+	(5, 'Bruce Lee Officer ', 'officer2@example.com', '2023-12-19 19:21:44', '$2y$10$SdNxTsBX.rhI5i2SjgCZ9uXqM/4dB3B/Nt6JPbICrNPqI7.EXj/v2', NULL, 'AaeM2Tm0TU', '2023-12-19 19:21:44', '2023-12-19 19:21:44'),
+	(6, 'Environmental crime Admin', 'environmental@example.com', '2023-12-19 19:21:45', '$2y$10$Hjn3kp7gJI1lS8z.2w/ane2v4e/lnDKE.P.c3oMw9jxFu4pIGWAqy', NULL, 'S8F8uQjapv', '2023-12-19 19:21:45', '2023-12-19 19:21:45'),
+	(7, 'Bruce Officer ', 'officer3@example.com', '2023-12-19 19:21:45', '$2y$10$zGo1TQdqPMvt4wFe/Vzi0.5yYnWi2CJ/3XYD4YQHwj6WJQnsQthym', NULL, 'TQDF1FMtUC', '2023-12-19 19:21:45', '2023-12-19 19:21:45'),
+	(8, 'Public User', 'user@example.com', '2023-12-19 19:21:45', '$2y$10$/p56U341281Zn0ireIiqneQJSknWr/j6T7TLNhT0uLVQB5P.XJHc.', NULL, 'K9UBSuLmvz', '2023-12-19 19:21:45', '2023-12-19 19:21:45');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

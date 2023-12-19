@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('assigned_officer_id')->nullable();
             $table->string('subject');
             $table->text('description');
+            $table->unsignedBigInteger('institution_id')->nullable();
 
             $table->enum('status', ['submitted', 'in_progress', 'resolved'])->default('submitted');
             $table->timestamps();
