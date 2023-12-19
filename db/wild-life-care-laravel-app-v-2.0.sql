@@ -421,7 +421,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table wild-life-care-laravel-app.users: ~8 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `google_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'Super-Admin User', 'superadmin@example.com', '2023-12-19 20:29:02', '$2y$10$8z0Yn4r7/NKk4uQ8YvKCPOFrtXZaW/oTdHZsXuCAQ/qtjAFUpOqwq', NULL, '4HPuXvN8g9', '2023-12-19 20:29:02', '2023-12-19 20:29:02'),
+	(1, 'Super Admin', 'superadmin@example.com', '2023-12-19 20:29:02', '$2y$10$8z0Yn4r7/NKk4uQ8YvKCPOFrtXZaW/oTdHZsXuCAQ/qtjAFUpOqwq', NULL, '4HPuXvN8g9', '2023-12-19 20:29:02', '2023-12-19 20:29:02'),
 	(2, 'Wildlife Admin', 'wildlife@example.com', '2023-12-19 20:29:03', '$2y$10$nI/S0PD79O6B/w05/71QEODIshgKrrFRYRQrLKqDH.bHazG/33iX.', NULL, 'QVAhXchLsz', '2023-12-19 20:29:03', '2023-12-19 20:29:03'),
 	(3, 'Mr.Been Officer ', 'officer@example.com', '2023-12-19 20:29:03', '$2y$10$eSwzg/ZgG/qoLTM2gZ8lke/X/Z/9D8t08NngcRKFifLu4bX7wqP.u', NULL, '6nhiMrvAS2', '2023-12-19 20:29:03', '2023-12-19 20:29:03'),
 	(4, 'Forestry Admin', 'forestry@example.com', '2023-12-19 20:29:03', '$2y$10$lUX1ZErxHaFEVhy/q8P4l.K2B2BeY7kkd1S97pKOpwFJYlWnF97zG', NULL, 'QXIg0ktN7l', '2023-12-19 20:29:03', '2023-12-19 20:29:03'),

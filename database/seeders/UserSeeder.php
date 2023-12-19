@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
         // ----------------Super Admin ----------------
 
         $superAdmin = \App\Models\User::factory()->create([
-            'name' => 'Super-Admin User',
+            'name' => 'Super Admin',
             'email' => 'superadmin@example.com',
             'password' => Hash::make('superadmin835'),
         ]);
