@@ -9,7 +9,6 @@ use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Complain;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +25,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/complain', [Complain::class, 'complain']);
 
 Route::get('/login/callback', [SocialiteController::class, 'callback']);
 

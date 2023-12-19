@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('investigations', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('officer_id');
-            $table->bigInteger('complaint_id');
-            $table->text('notes')->nullable();
-            $table->enum('status', ['pending', 'in_progress', 'completed'])->default('pending');
+            $table->unsignedBigInteger('complaint_id');
+            $table->decimal('latitude', 10, 8);
+            $table->decimal('longitude', 11, 8);
+            $table->string('address')->nullable();
             $table->timestamps();
+            $table->foreign('complaint_id')->references('id')->on('complaints')->onDelete('cascade');
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('investigations');
+        Schema::dropIfExists('locations');
     }
 };

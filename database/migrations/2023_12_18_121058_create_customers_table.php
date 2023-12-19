@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unique();
+            $table->text('address')->nullable();
+            $table->text('address_2')->nullable();
+            $table->text('phone')->nullable();
             $table->timestamps();
         });
     }

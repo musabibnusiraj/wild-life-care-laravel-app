@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('officers', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unique();
-            $table->bigInteger('admin_id');
-            $table->text('address')->nullable();
-            $table->text('address_2')->nullable();
-            $table->text('phone')->nullable();
+        Schema::create('attachments', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('complaint_id');
+            $table->string('file_path');
             $table->timestamps();
+            $table->foreign('complaint_id')->references('id')->on('complaints')->onDelete('cascade');
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('officers');
+        Schema::dropIfExists('attachments');
     }
 };

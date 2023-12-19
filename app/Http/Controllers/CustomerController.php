@@ -13,10 +13,12 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        // Get users with the 'customer' role
-        $customers = User::role('User')->get();
+        // Get customers based on users with the "User" role
+        $customers = Customer::whereHas('user', function ($query) {
+            $query->role('User');
+        })->get();
 
-        return view('customers.view-customers', compact('customers'));
+        return view('customers.view-customers', compact('customers', 'data'));
     }
 
     /**

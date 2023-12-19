@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('institutions', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unique();
+            $table->text('name')->nullable();
+            $table->enum('type', ['forestry', 'environmental_crime', 'wildlife'])->default('wildlife');
+            $table->text('address')->nullable();
+            $table->text('address_2')->nullable();
+            $table->text('phone')->nullable();
+            $table->text('branch')->nullable();
             $table->timestamps();
         });
     }
