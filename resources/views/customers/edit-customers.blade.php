@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="card">
-            <h5 class="card-header">Update Complainer</h5>
+            <h5 class="card-header">Update Complainer Status</h5>
             <div class="card-body">
                 <!-- Logo -->
                 <div class="app-brand justify-content-center">

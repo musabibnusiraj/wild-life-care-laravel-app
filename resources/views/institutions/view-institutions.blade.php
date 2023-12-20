@@ -10,11 +10,24 @@
                     Institution</a>
             </h5>
             <div class="table-responsive text-nowrap">
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @elseif (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                 <table class="table">
+
                     <thead>
                         <tr>
                             <th>Institution Name</th>
                             <th></th>
+                            <th>Branch</th>
                             <th>User Name</th>
                             <th>User Email</th>
                             <th>Phone</th>
@@ -37,6 +50,7 @@
                                         <span class="badge bg-info">Wild Life Conservation</span>
                                     @endif
                                 </td>
+                                <td>{{ $institution->branch }}</td>
                                 <td>{{ $institution->user->name }}</td>
                                 <td>{{ $institution->user->email }}</td>
                                 <td>{{ $institution->phone }}</td>

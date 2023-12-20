@@ -13,16 +13,21 @@
                         </span>
                     </a>
                 </div>
+
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                @elseif (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 @endif
 
-                <form id="formAuthentication" class="mb-3" action="{{ route('customer.store') }}" method="POST">
+                <form id="formAuthentication" class="mb-3" action="{{ route('institution.store') }}" method="POST">
                     @csrf
-                    @method('PATCH')
                     <div class="row">
 
                         <div class="col-12 mb-3">
@@ -50,9 +55,13 @@
                         </div>
                         <div class="col-6 mb-3">
                             <label for="branch" class="form-label">Branch</label>
-                            <input id="branch" type="branch" class="form-control @error('branch') is-invalid @enderror"
-                                name="branch" value="{{ old('branch') }}" required autocomplete="branch"
-                                placeholder="Enter branch">
+                            <select id="branch" class="form-control @error('branch') is-invalid @enderror"
+                                name="branch">
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch }}">{{ $branch }}
+                                    </option>
+                                @endforeach
+                            </select>
                             @error('branch')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
