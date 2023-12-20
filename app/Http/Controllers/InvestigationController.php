@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Complaint;
+use App\Models\Institution;
 use App\Models\Investigation;
 use Illuminate\Http\Request;
 
@@ -20,23 +22,14 @@ class InvestigationController extends Controller
      */
     public function index()
     {
-        $investigations = Investigation::where('')->get();
-
-        // $authUser = auth()->user();
-        // if ($authUser->hasRole('Super-Admin')) {
-        //     // Get officers based on users with the "Officer" role
-        //     $officers = Officer::whereHas('user', function ($query) {
-        //         $query->role('Officer');
-        //     })->with('user')->with('institution')->get();
-        // } elseif ($authUser->hasRole('Admin')) {
-        //     $institution_id  = Institution::where('user_id', $authUser->id)->pluck('id')->first();
-        //     // Get officers based on users with the "Officer" role
-        //     $officers = Officer::whereHas('user', function ($query) use ($institution_id) {
-        //         $query->role('Officer')->where('institution_id', $institution_id);;
-        //     })->with('user')->with('institution')->get();
-        // } else {
-        //     dd('Access denied!');
-        // }
+        $authUser = auth()->user();
+        if ($authUser->hasRole('Officer')) {
+            $investigations = Investigation::where('officer_id', $authUser->id)->get();
+        } elseif ($authUser->hasRole('Super-Admin')) {
+            $investigations = Investigation::all();
+        } else {
+            dd('Access denied!');
+        }
 
         return view('investigations.view-investigations', compact('investigations'));
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Location;
 use App\Models\Attachment;
 use App\Models\Complaint;
+use App\Models\Institution;
 use Illuminate\Http\Request;
 
 class ComplaintController extends Controller
@@ -14,7 +15,18 @@ class ComplaintController extends Controller
      */
     public function index()
     {
-        $complaints = Complaint::all();
+        $authUser = auth()->user();
+        if ($authUser->hasRole('User')) {
+            $complaints = Complaint::where('user_id', $authUser->id)->get();
+        } elseif ($authUser->hasRole('Officer')) {
+            $complaints = Complaint::where('assigned_officer_id', $authUser->id)->get();
+        } elseif ($authUser->hasRole('Super-Admin')) {
+            $complaints = Complaint::all();
+        } elseif ($authUser->hasRole('Admin')) {
+            $complaints = Complaint::where('institution_id', optional(Institution::where('user_id', $authUser->id))->value('id'))->get();
+        } else {
+            dd('Access denied!');
+        }
         return view('complaints.view-complaints', compact('complaints'));
     }
 
@@ -59,7 +71,6 @@ class ComplaintController extends Controller
                     'file_path' => $path,
                 ]);
             }
-
         } catch (Exception $e) {
             dd($e);
         }

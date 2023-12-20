@@ -21,4 +21,9 @@ class Institution extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function investigations()
+    {
+        return $this->belongsTo(Investigation::class);
+    }
 }
