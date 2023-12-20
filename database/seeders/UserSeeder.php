@@ -80,7 +80,7 @@ class UserSeeder extends Seeder
         Institution::create([
             'user_id' => $admin2->id,
             'type' => 'forestry',
-            'name' => 'Wild Life Care Center',
+            'name' => 'Forestry Dep',
             'phone' => '0755555555',
             'address' => 'Dubai main road',
             'address_2' => 'Dubai kurukku sandhu',

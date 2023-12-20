@@ -13,8 +13,10 @@ class InstitutionController extends Controller
      */
     public function index()
     {
-        // Get users with the 'Officer' role
-        $institutions = User::role('Admin')->get();
+        // Get institutions based on users with the "User" role
+        $institutions = Institution::whereHas('user', function ($query) {
+            $query->role('Admin');
+        })->with('user')->get();
 
         return view('institutions.view-institutions', compact('institutions'));
     }
@@ -24,15 +26,17 @@ class InstitutionController extends Controller
      */
     public function create()
     {
-        //
+        return view('institutions.create-institutions');
     }
+
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -48,7 +52,7 @@ class InstitutionController extends Controller
      */
     public function edit(Institution $institution)
     {
-        //
+        dd($institution);
     }
 
     /**
@@ -56,7 +60,7 @@ class InstitutionController extends Controller
      */
     public function update(Request $request, Institution $institution)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -64,6 +68,6 @@ class InstitutionController extends Controller
      */
     public function destroy(Institution $institution)
     {
-        //
+        dd($institution);
     }
 }
