@@ -22,7 +22,7 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        //
+        return view('complaints.create-complaints');
     }
 
     /**
