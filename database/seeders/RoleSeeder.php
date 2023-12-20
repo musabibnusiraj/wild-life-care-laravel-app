@@ -23,21 +23,17 @@ class RoleSeeder extends Seeder
         $adminRole->givePermissionTo('delete-officers');
         $adminRole->givePermissionTo('view-officers');
         $adminRole->givePermissionTo('create-officers');
-        $adminRole->givePermissionTo('update-officers');
 
         $adminRole->givePermissionTo('view-complaints');
-        $adminRole->givePermissionTo('update-complaints');
         $adminRole->givePermissionTo('edit-complaints');
 
         $adminRole->givePermissionTo('edit-investigations');
         $adminRole->givePermissionTo('view-investigations');
         $adminRole->givePermissionTo('create-investigations');
-        $adminRole->givePermissionTo('update-investigations');
         $adminRole->givePermissionTo('delete-investigations');
 
         $officerRole = Role::create(['name' => 'Officer']);
         $officerRole->givePermissionTo('view-investigations');
-        $officerRole->givePermissionTo('update-investigations');
         $officerRole->givePermissionTo('edit-investigations');
         $adminRole->givePermissionTo('view-complaints');
 
@@ -45,7 +41,6 @@ class RoleSeeder extends Seeder
         $userRole->givePermissionTo('edit-complaints');
         $userRole->givePermissionTo('view-complaints');
         $userRole->givePermissionTo('create-complaints');
-        $userRole->givePermissionTo('update-complaints');
         $userRole->givePermissionTo('delete-complaints');
     }
 }

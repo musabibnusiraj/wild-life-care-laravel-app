@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="card">
-            <h5 class="card-header">Update Institution</h5>
+            <h5 class="card-header">Create Investigations</h5>
             <div class="card-body">
                 <!-- Logo -->
                 <div class="app-brand justify-content-center">
@@ -26,23 +26,32 @@
                     </div>
                 @endif
 
-                <form id="formAuthentication" class="mb-3" action="{{ route('officer.update', $officer->id) }}"
-                    method="POST">
+                <form id="formAuthentication" class="mb-3" action="{{ route('investigations.store') }}" method="POST">
                     @csrf
-                    @method('PATCH')
                     <div class="row">
-                        <div class="col-12 mb-3">
-                            <label for="badge_number" class="form-label">Badge Number</label>
-                            <input id="badge_number" type="text"
-                                class="form-control @error('badge_number') is-invalid @enderror" name="badge_number"
-                                value="{{ $officer->badge_number ?? old('badge_number') }}" required
-                                autocomplete="badge_number" placeholder="Enter officer badge number" autofocus>
 
-                            @error('badge_number')
+                        <div class="col-12 mb-3">
+                            <label for="instituion_name" class="form-label">Institution Name</label>
+                            <input id="instituion_name" type="text"
+                                class="form-control @error('instituion_name') is-invalid @enderror" name="instituion_name"
+                                value="{{ old('instituion_name') }}" required autocomplete="instituion_name"
+                                placeholder="Enter instituion name" autofocus>
+
+                            @error('instituion_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label for="type" class="form-label">Institution Type</label>
+                            <select id="type" class="form-control @error('type') is-invalid @enderror" name="type">
+                                <option value="forestry">Forestry Conservation</option>
+                                <option value="environmental_crime">Environmental Resources Conservation</option>
+                                <option value="wildlife">Wild Life Conservation</option>
+                            </select>
                         </div>
                     </div>
 
@@ -50,8 +59,8 @@
                         <div class="col-6 mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                name="name" value="{{ $officer->user->name ?? old('name') }}" required
-                                autocomplete="name" placeholder="Enter your username" autofocus>
+                                name="name" value="{{ old('name') }}" required autocomplete="name"
+                                placeholder="Enter your username" autofocus>
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -62,8 +71,8 @@
                         <div class="col-6 mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ $officer->user->email ?? old('email') }}" required
-                                autocomplete="email" placeholder="Enter your email">
+                                name="email" value="{{ old('email') }}" required autocomplete="email"
+                                placeholder="Enter your email">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -76,8 +85,8 @@
                         <div class=" col-6 mb-3">
                             <label for="address" class="form-label">Address</label>
                             <input id="address" type="text" class="form-control @error('address') is-invalid @enderror"
-                                name="address" value="{{ $officer->address ?? old('address') }}" required
-                                autocomplete="address" placeholder="Enter your address" autofocus>
+                                name="address" value="{{ old('address') }}" required autocomplete="address"
+                                placeholder="Enter your address" autofocus>
 
                             @error('address')
                                 <span class="invalid-feedback" role="alert">
@@ -89,8 +98,8 @@
                             <label for="address_2" class="form-label">Address 2</label>
                             <input id="address_2" type="text"
                                 class="form-control @error('address_2') is-invalid @enderror" name="address_2"
-                                value="{{ $officer->address_2 ?? old('address_2') }}" autocomplete="address_2"
-                                placeholder="Enter your address_2" autofocus>
+                                value="{{ old('address_2') }}" autocomplete="address_2" placeholder="Enter your address_2"
+                                autofocus>
 
                             @error('address_2')
                                 <span class="invalid-feedback" role="alert">
@@ -103,9 +112,10 @@
                     <div class="row">
                         <div class=" col-6 mb-3">
                             <label for="phone" class="form-label">Phone</label>
-                            <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror"
-                                name="phone" value="{{ $officer->phone ?? old('phone') }}" required autocomplete="phone"
-                                placeholder="Enter your phone" autofocus>
+                            <input id="phone" type="text"
+                                class="form-control @error('phone') is-invalid @enderror" name="phone"
+                                value="{{ old('phone') }}" required autocomplete="phone" placeholder="Enter your phone"
+                                autofocus>
 
                             @error('phone')
                                 <span class="invalid-feedback" role="alert">
@@ -117,9 +127,9 @@
                             <label for="status" class="form-label">Status</label>
                             <select id="status" class="form-control @error('status') is-invalid @enderror"
                                 name="status">
-                                <option value="1" {{ $officer->status == 1 ? 'selected' : '' }}>Active
+                                <option value="1">Active
                                 </option>
-                                <option value="0" {{ $officer->status == 0 ? 'selected' : '' }}>Deactive
+                                <option value="0">Deactive
                                 </option>
                             </select>
                         </div>
@@ -127,7 +137,7 @@
                             <label class="form-label" for="password">Password</label>
                             <div class="input-group input-group-merge">
                                 <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password" required
                                     autocomplete="new-password"
                                     placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                     aria-describedby="password">
@@ -146,7 +156,7 @@
                                 <input type="password" id="password-confirm" class="form-control"
                                     name="password_confirmation"
                                     placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                    aria-describedby="password" autocomplete="new-password" />
+                                    aria-describedby="password" required autocomplete="new-password" />
                                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
@@ -156,7 +166,7 @@
 
                     <div class="row">
                         <div class=" col-3">
-                            <a href="{{ route('officer.index') }}" class="btn btn-dark d-grid w-100">Back</a>
+                            <a href="{{ route('institution.index') }}" class="btn btn-dark d-grid w-100">Back</a>
                         </div>
                         <div class=" col-6">
                         </div>

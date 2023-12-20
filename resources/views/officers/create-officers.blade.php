@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="card">
-            <h5 class="card-header">Create Institution</h5>
+            <h5 class="card-header">Create Officer</h5>
             <div class="card-body">
                 <!-- Logo -->
                 <div class="app-brand justify-content-center">
@@ -26,44 +26,17 @@
                     </div>
                 @endif
 
-                <form id="formAuthentication" class="mb-3" action="{{ route('institution.store') }}" method="POST">
+                <form id="formAuthentication" class="mb-3" action="{{ route('officer.store') }}" method="POST">
                     @csrf
                     <div class="row">
-
                         <div class="col-12 mb-3">
-                            <label for="instituion_name" class="form-label">Institution Name</label>
-                            <input id="instituion_name" type="text"
-                                class="form-control @error('instituion_name') is-invalid @enderror" name="instituion_name"
-                                value="{{ old('instituion_name') }}" required autocomplete="instituion_name"
-                                placeholder="Enter instituion name" autofocus>
+                            <label for="badge_number" class="form-label">Badge Number</label>
+                            <input id="badge_number" type="text"
+                                class="form-control @error('badge_number') is-invalid @enderror" name="badge_number"
+                                value="{{ old('badge_number') }}" required autocomplete="badge_number"
+                                placeholder="Enter officer badge number" autofocus>
 
-                            @error('instituion_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 mb-3">
-                            <label for="type" class="form-label">Institution Type</label>
-                            <select id="type" class="form-control @error('type') is-invalid @enderror" name="type">
-                                <option value="forestry">Forestry Conservation</option>
-                                <option value="environmental_crime">Environmental Resources Conservation</option>
-                                <option value="wildlife">Wild Life Conservation</option>
-                            </select>
-                        </div>
-                        <div class="col-6 mb-3">
-                            <label for="branch" class="form-label">Branch</label>
-                            <select id="branch" class="form-control @error('branch') is-invalid @enderror"
-                                name="branch">
-                                @foreach ($branches as $branch)
-                                    <option value="{{ $branch }}">
-                                        <span class="text-capitalize">{{ $branch }}</span>
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('branch')
+                            @error('badge_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -114,8 +87,8 @@
                             <label for="address_2" class="form-label">Address 2</label>
                             <input id="address_2" type="text"
                                 class="form-control @error('address_2') is-invalid @enderror" name="address_2"
-                                value="{{ old('address_2') }}" autocomplete="address_2"
-                                placeholder="Enter your address_2" autofocus>
+                                value="{{ old('address_2') }}" autocomplete="address_2" placeholder="Enter your address_2"
+                                autofocus>
 
                             @error('address_2')
                                 <span class="invalid-feedback" role="alert">
@@ -128,10 +101,9 @@
                     <div class="row">
                         <div class=" col-6 mb-3">
                             <label for="phone" class="form-label">Phone</label>
-                            <input id="phone" type="text"
-                                class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                value="{{ old('phone') }}" required autocomplete="phone" placeholder="Enter your phone"
-                                autofocus>
+                            <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror"
+                                name="phone" value="{{ old('phone') }}" required autocomplete="phone"
+                                placeholder="Enter your phone" autofocus>
 
                             @error('phone')
                                 <span class="invalid-feedback" role="alert">
@@ -178,11 +150,9 @@
                         </div>
                     </div>
 
-
-
                     <div class="row">
                         <div class=" col-3">
-                            <a href="{{ route('institution.index') }}" class="btn btn-dark d-grid w-100">Back</a>
+                            <a href="{{ route('officer.index') }}" class="btn btn-dark d-grid w-100">Back</a>
                         </div>
                         <div class=" col-6">
                         </div>
