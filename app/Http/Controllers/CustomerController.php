@@ -26,7 +26,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.create-customers');
     }
 
     /**
@@ -50,7 +50,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customers.edit-customers', compact('customer'));
     }
 
     /**
@@ -58,7 +58,17 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+
+        // Validate the request data
+        $validatedData = $request->validate([
+            'status' => 'required',
+        ]);
+
+        // Update the customer record
+        $customer->update($validatedData);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Customer status updated successfully');
     }
 
     /**

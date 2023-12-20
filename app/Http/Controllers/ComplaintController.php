@@ -12,7 +12,7 @@ class ComplaintController extends Controller
      */
     public function index()
     {
-        $complaints = [];
+        $complaints = Complaint::all();
 
         return view('complaints.view-complaints', compact('complaints'));
     }
@@ -22,7 +22,7 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        //
+        return view('complaints.view-complaints');
     }
 
     /**
