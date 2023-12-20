@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class InvestigationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view-investigations')->only(['index', 'show']);
+        $this->middleware('permission:create-investigations')->only(['create', 'store']);
+        $this->middleware('permission:edit-investigations')->only(['edit', 'update']);
+        $this->middleware('permission:delete-investigations')->only(['delete']);
+    }
+
     /**
      * Display a listing of the resource.
      */

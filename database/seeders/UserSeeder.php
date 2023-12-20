@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('wildlife835'),
         ]);
         $admin1->assignRole($adminRole);
-        Institution::create([
+        $institution = Institution::create([
             'user_id' => $admin1->id,
             'type' => 'wildlife',
             'name' => 'Wild Life Care Center',
@@ -62,7 +62,7 @@ class UserSeeder extends Seeder
         $officer1->assignRole($officerRole);
         Officer::create([
             'user_id' => $officer1->id,
-            'admin_id' => $admin1->id,
+            'institution_id' => $institution->id,
             'phone' => '0755555555',
             'address' => 'Main road colombo',
             'address_2' => 'Dubai kurukku sandhu',
@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('forestry835'),
         ]);
         $admin2->assignRole($adminRole);
-        Institution::create([
+        $institution2 = Institution::create([
             'user_id' => $admin2->id,
             'type' => 'forestry',
             'name' => 'Forestry Dep',
@@ -95,7 +95,7 @@ class UserSeeder extends Seeder
         $officer2->assignRole($officerRole);
         Officer::create([
             'user_id' => $officer2->id,
-            'admin_id' => $admin2->id,
+            'institution_id' => $institution2->id,
             'phone' => '0755555555',
             'address' => 'Dubai main road',
             'address_2' => 'Dubai kurukku sandhu',
@@ -111,7 +111,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('environmental835'),
         ]);
         $admin3->assignRole($adminRole);
-        Institution::create([
+        $institution3  = Institution::create([
             'user_id' => $admin3->id,
             'type' => 'environmental_crime',
             'name' => 'Environmental Care Center',
@@ -129,7 +129,7 @@ class UserSeeder extends Seeder
         $officer3->assignRole($officerRole);
         Officer::create([
             'user_id' => $officer3->id,
-            'admin_id' => $admin3->id,
+            'institution_id' => $institution3->id,
             'phone' => '07000000',
             'address' => '1st Street Matara',
             'address_2' => 'Dubai kurukku sandhu',

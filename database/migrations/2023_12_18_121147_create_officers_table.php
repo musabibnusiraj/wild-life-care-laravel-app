@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('officers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unique();
-            $table->bigInteger('admin_id');
+            $table->bigInteger('institution_id');
             $table->text('address')->nullable();
             $table->text('address_2')->nullable();
             $table->text('phone')->nullable();

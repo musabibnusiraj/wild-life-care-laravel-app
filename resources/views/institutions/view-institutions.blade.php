@@ -50,7 +50,7 @@
                                         <span class="badge bg-info">Wild Life Conservation</span>
                                     @endif
                                 </td>
-                                <td>{{ $institution->branch }}</td>
+                                <td class="text-capitalize">{{ $institution->branch }}</td>
                                 <td>{{ $institution->user->name }}</td>
                                 <td>{{ $institution->user->email }}</td>
                                 <td>{{ $institution->phone }}</td>

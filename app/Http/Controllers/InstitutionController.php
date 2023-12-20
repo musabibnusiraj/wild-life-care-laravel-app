@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Institution;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class InstitutionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view-institutions')->only(['index', 'show']);
+        $this->middleware('permission:create-institutions')->only(['create', 'store']);
+        $this->middleware('permission:edit-institutions')->only(['edit', 'update']);
+        $this->middleware('permission:delete-institutions')->only(['delete']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -28,7 +35,7 @@ class InstitutionController extends Controller
      */
     public function create()
     {
-        $branches = ['Colombo', 'Kandy', 'Galle', 'Jaffna', 'Anuradhapura', 'Trincomalee', 'Matara', 'Puttalam']; // Add more branches
+        $branches = ['colombo', 'kandy', 'galle', 'jaffna', 'anuradhapura', 'trincomalee', 'matara', 'puttalam']; // Add more branches
 
         return view('institutions.create-institutions', compact('branches'));
     }
@@ -86,8 +93,7 @@ class InstitutionController extends Controller
      */
     public function edit(Institution $institution)
     {
-        $branches = ['Colombo', 'Kandy', 'Galle', 'Jaffna', 'Anuradhapura', 'Trincomalee', 'Matara', 'Puttalam']; // Add more branches
-
+        $branches = ['colombo', 'kandy', 'galle', 'jaffna', 'anuradhapura', 'trincomalee', 'matara', 'puttalam']; // Add more branches
         return view('institutions.edit-institutions', compact('institution', 'branches'));
     }
 
