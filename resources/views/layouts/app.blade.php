@@ -296,6 +296,18 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        $(document).ready(function($) {
+            // Event handler for opening the modal
+            $('.assign-modal').on('click', function(e) {
+                e.preventDefault();
+
+                var complaint_id = $(this).data('complaint-id');
+                $('#complaint_id').val(complaint_id);
+                console.log(complaint_id);
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -45,9 +45,30 @@ class InvestigationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function assignOfficer(Request $id)
+    public function assignOfficer(Request $request)
     {
-        dd($id);
+        // Validate the request data
+        $request->validate([
+            'officer_id' => 'required|exists:officers,id',
+            'complaint_id' => 'required|exists:complaints,id',
+        ]);
+
+        // Retrieve validated data
+        $officer_id = $request->input('officer_id');
+        $complaint_id = $request->input('complaint_id');
+
+        // Find the complaint by ID
+        $complaint = Complaint::find($complaint_id);
+
+        // Update officer_id if the complaint is found
+        if ($complaint) {
+            $complaint->update(['assigned_officer_id' => $officer_id, 'status' => 'in_progress']);
+            Investigation::create(['officer_id' => $officer_id, 'complaint_id' => $complaint_id]);
+            return redirect()->back()->with('success', 'Officer assigned successfully');
+        }
+
+        // Return a response or redirect with an error message if needed
+        return redirect()->back()->with('error', 'Complaint not found or officer not assigned');
     }
 
     public function view($id)
