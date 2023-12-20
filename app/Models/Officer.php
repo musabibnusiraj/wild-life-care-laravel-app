@@ -11,6 +11,11 @@ class Officer extends Model
 
     protected $fillable = ['institution_id', 'user_id', 'badge_number', 'admin_id', 'address', 'address_2', 'phone', 'status'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function institution()
     {
         return $this->belongsTo(Institution::class);

@@ -16,4 +16,9 @@ class Institution extends Model
     {
         return $this->hasMany(Officer::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

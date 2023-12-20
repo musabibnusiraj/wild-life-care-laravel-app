@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="card">
-            <h5 class="card-header">Update Complainer</h5>
+            <h5 class="card-header">Update Complainer Status</h5>
             <div class="card-body">
                 <!-- Logo -->
                 <div class="app-brand justify-content-center">
@@ -105,7 +105,7 @@
                     </div>
                     <div class="row">
                         <div class=" col-3">
-                            <a href="{{ url()->previous() }}" class="btn btn-dark d-grid w-100">Back</a>
+                            <a href="{{ route('customer.index') }}" class="btn btn-dark d-grid w-100">Back</a>
                         </div>
                         <div class=" col-6">
                         </div>

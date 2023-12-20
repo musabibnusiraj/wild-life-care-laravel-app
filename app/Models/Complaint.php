@@ -16,6 +16,11 @@ class Complaint extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function institution()
+    {
+        return $this->belongsTo(Institution::class);
+    }
+
     public function attachments()
     {
         return $this->hasMany(Attachment::class);

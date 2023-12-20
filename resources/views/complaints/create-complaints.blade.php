@@ -43,7 +43,8 @@
                             <input type="hidden" name="longitude" id="longitude">
                             <div class="col-5 mb-3">
                                 <label for="images">Upload Images:</label>
-                                <input type="file" class="form-control-file" name="images[]" id="images" multiple accept="image/*">
+                                <input type="file" class="form-control-file" name="images[]" id="images" multiple
+                                    accept="image/*">
                             </div>
 
                             <div class="col-5 mb-3">

@@ -8,13 +8,24 @@ use Illuminate\Http\Request;
 
 class OfficerController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:view-officers')->only(['index', 'show']);
+        $this->middleware('permission:create-officers')->only(['create', 'store']);
+        $this->middleware('permission:edit-officers')->only(['edit', 'update']);
+        $this->middleware('permission:delete-officers')->only(['delete']);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // Get users with the 'Officer' role
-        $officers = User::role('Officer')->get();
+        // Get officers based on users with the "Officer" role
+        $officers = Officer::whereHas('user', function ($query) {
+            $query->role('Officer');
+        })->with('user')->with('institution')->get();
 
         return view('officers.view-officers', compact('officers'));
     }
