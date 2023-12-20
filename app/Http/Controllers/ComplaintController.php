@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
+use App\Models\Attachment;
 use App\Models\Complaint;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,6 @@ class ComplaintController extends Controller
     public function index()
     {
         $complaints = Complaint::all();
-
         return view('complaints.view-complaints', compact('complaints'));
     }
 
@@ -22,46 +23,47 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        return view('complaints.create-complaints');
+        // return view('complaints.create-complaints');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        try {
+            $userId = auth()->user()->id;
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Complaint $complaint)
-    {
-        //
-    }
+            $userId = auth()->user()->id;
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Complaint $complaint)
-    {
-        //
-    }
+            $complaint = Complaint::create([
+                'user_id' => $userId,
+                'institution_id' => 1,
+                'subject' => $request['title'],
+                'description' => $request['description'],
+            ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Complaint $complaint)
-    {
-        //
-    }
+            $location = Location::create([
+                'complaint_id' => $complaint->id,
+                'latitude' => '6.9271',
+                'longitude' => '79.8612',
+                'address' => $request['address'],
+            ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Complaint $complaint)
-    {
-        //
+            $images = $request->file('images');
+
+            foreach ($images as $image) {
+                $path = $image->storeAs(
+                    'attachment',
+                    $image->getClientOriginalName()
+                );
+                Attachment::create([
+                    'complaint_id' => $complaint->id,
+                    'file_path' => $path,
+                ]);
+            }
+
+        } catch (Exception $e) {
+            dd($e);
+        }
+
+        return redirect()->route('complaint.index')->with('success', 'Complaint submitted successfully!');
     }
 }
