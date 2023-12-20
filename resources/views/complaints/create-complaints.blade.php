@@ -9,7 +9,7 @@
                         Add Complaint
                     </div>
                     <div class="card-body">
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('complaint.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -46,7 +46,8 @@
 
                             <div class="form-group">
                                 <label for="images">Upload Images:</label>
-                                <input type="file" class="form-control-file" name="images[]" id="images" multiple accept="image/*">
+                                <input type="file" class="form-control-file" name="images[]" id="images" multiple
+                                    accept="image/*">
                             </div>
 
                             <div class="mt-3">
@@ -63,7 +64,10 @@
     <script>
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 0, lng: 0},
+                center: {
+                    lat: 0,
+                    lng: 0
+                },
                 zoom: 8
             });
 

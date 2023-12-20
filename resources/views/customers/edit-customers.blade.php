@@ -105,7 +105,7 @@
                     </div>
                     <div class="row">
                         <div class=" col-3">
-                            <a href="{{ url()->previous() }}" class="btn btn-dark d-grid w-100">Back</a>
+                            <a href="{{ route('customer.index') }}" class="btn btn-dark d-grid w-100">Back</a>
                         </div>
                         <div class=" col-6">
                         </div>
