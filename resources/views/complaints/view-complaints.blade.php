@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Your Complaints</h1>
 
-        @if(!is_null($complaints) && count($complaints) > 0)
+        @if (!is_null($complaints) && count($complaints) > 0)
             <table class="table">
                 <thead>
                     <tr>
@@ -13,7 +13,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($complaints as $complaint)
+                    @foreach ($complaints as $complaint)
                         <tr>
                             <td>{{ $complaint->subject }}</td>
                             <td>{{ $complaint->description }}</td>
