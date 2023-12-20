@@ -22,8 +22,9 @@
                                 <td>{{ $complaint->description }}</td>
                                 <td>
                                     @foreach ($complaint->attachments as $attachment)
-                                    <img src="{{ asset('storage/' . $attachment->file_path) }}" alt="Image" class="img-thumbnail" width="50">
-                                @endforeach
+                                        <img src="{{ asset('storage/' . $attachment->file_path) }}" alt="Image"
+                                            class="img-thumbnail" width="50">
+                                    @endforeach
                                 </td>
                                 <td>
                                     @if ($complaint->status == 'submitted')
@@ -37,9 +38,24 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('complaint.show', $complaint->id) }}" class="btn btn-info btn-sm">View</a>
-                   
-                                        </td>
+                                    @role('Admin')
+                                        @if (!isset($complaint->assigned_officer_id))
+                                            <a href="{{ route('investigation.show', $complaint->id) }}"
+                                                class="btn btn-primary btn-sm active assign-modal" data-id=""
+                                                data-bs-toggle="modal" data-bs-target="#assignModal">Assign Officer</a>
+                                        @endif
+                                    @endrole
+
+                                    <a href="{{ route('investigation.show', $complaint->id) }}"
+                                        class="btn btn-info btn-sm">View</a>
+
+
+                                    @role('Officer')
+                                        <a href="{{ route('investigation.edit', $complaint->id) }}"
+                                            class="btn btn-info btn-sm">View</a>
+                                    @endrole
+                                </td>
+
                             </tr>
                         @endforeach
                     </tbody>
@@ -47,4 +63,26 @@
             </div>
         </div>
     </div>
+
+    <!-- Invoice Modal -->
+    <div class="modal fade" id="assignModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="assignOfficerModalLabel"></h5>
+                </div>
+                <div class="modal-body">
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary" id="printBtn">Assign</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Invoice Modal -->
 @endsection
