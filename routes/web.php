@@ -35,6 +35,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('customer', CustomerController::class);
     Route::resource('officer', OfficerController::class);
     Route::resource('institution', InstitutionController::class);
+
+    Route::post('complaint/assign/officer', [InvestigationController::class, 'assignOfficer'])->name('complaint.assign.officer');
     Route::resource('complaint', ComplaintController::class);
+
+    Route::get('investigation/{complaintId}/view', [InvestigationController::class, 'view'])->name('investigation.view');
     Route::resource('investigation', InvestigationController::class);
 });

@@ -11,9 +11,9 @@ class InvestigationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:view-investigations')->only(['index', 'show']);
+        $this->middleware('permission:view-investigations')->only(['index', 'show', 'view']);
         $this->middleware('permission:create-investigations')->only(['create', 'store']);
-        $this->middleware('permission:edit-investigations')->only(['edit', 'update']);
+        $this->middleware('permission:edit-investigations')->only(['edit', 'update', 'assignOfficer']);
         $this->middleware('permission:delete-investigations')->only(['delete']);
     }
 
@@ -45,10 +45,17 @@ class InvestigationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function assignOfficer(Request $id)
     {
-        //
+        dd($id);
     }
+
+    public function view($id)
+    {
+        $investigation = Investigation::where('complaint_id', $id)->first();
+        return view('investigations.show-investigations', compact('investigation'));
+    }
+
 
     /**
      * Display the specified resource.

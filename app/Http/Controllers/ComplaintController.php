@@ -6,6 +6,8 @@ use App\Models\Location;
 use App\Models\Attachment;
 use App\Models\Complaint;
 use App\Models\Institution;
+use App\Models\Officer;
+use Exception;
 use Illuminate\Http\Request;
 
 class ComplaintController extends Controller
@@ -15,6 +17,7 @@ class ComplaintController extends Controller
      */
     public function index()
     {
+        $officers = null;
         $authUser = auth()->user();
         if ($authUser->hasRole('User')) {
             $complaints = Complaint::where('user_id', $authUser->id)->get();
@@ -24,10 +27,11 @@ class ComplaintController extends Controller
             $complaints = Complaint::all();
         } elseif ($authUser->hasRole('Admin')) {
             $complaints = Complaint::where('institution_id', optional(Institution::where('user_id', $authUser->id))->value('id'))->get();
+            $officers = Officer::where('institution_id', optional(Institution::where('user_id', $authUser->id))->value('id'))->get();
         } else {
             dd('Access denied!');
         }
-        return view('complaints.view-complaints', compact('complaints'));
+        return view('complaints.view-complaints', compact('complaints', 'officers'));
     }
 
     /**
@@ -43,8 +47,6 @@ class ComplaintController extends Controller
         try {
             $userId = auth()->user()->id;
 
-            $userId = auth()->user()->id;
-
             $complaint = Complaint::create([
                 'user_id' => $userId,
                 'institution_id' => 1,
@@ -52,7 +54,7 @@ class ComplaintController extends Controller
                 'description' => $request['description'],
             ]);
 
-            $location = Location::create([
+            Location::create([
                 'complaint_id' => $complaint->id,
                 'latitude' => '6.9271',
                 'longitude' => '79.8612',
@@ -71,10 +73,10 @@ class ComplaintController extends Controller
                     'file_path' => $path,
                 ]);
             }
+
+            return redirect()->route('complaint.index')->with('success', 'Complaint submitted successfully!');
         } catch (Exception $e) {
             dd($e);
         }
-
-        return redirect()->route('complaint.index')->with('success', 'Complaint submitted successfully!');
     }
 }
