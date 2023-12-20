@@ -23,7 +23,7 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        // return view('complaints.create-complaints');
+        return view('complaints.create-complaints');
     }
 
     public function store(Request $request)
@@ -51,7 +51,7 @@ class ComplaintController extends Controller
 
             foreach ($images as $image) {
                 $path = $image->storeAs(
-                    'attachment',
+                    'public/attachment',
                     $image->getClientOriginalName()
                 );
                 Attachment::create([
