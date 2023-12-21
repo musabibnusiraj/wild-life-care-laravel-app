@@ -23,7 +23,6 @@
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Status</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
@@ -31,8 +30,7 @@
                                 <tr>
                                     <td>{{ $complaint->subject }}</td>
                                     <td>{{ $complaint->description }}</td>
-                                    <td>
-                                    </td>
+
                                     <td>
                                         @if ($complaint->status == 'submitted')
                                             <span class="badge bg-label-primary">{{ $complaint->status }}</span>
@@ -45,6 +43,13 @@
                                         @endif
                                     </td>
                                     <td>
+                                        @role('Super-Admin')
+                                            @if (isset($complaint->assigned_officer_id))
+                                                <a href="{{ route('investigation.view', $complaint->id) }}"
+                                                    class="btn btn-info btn-sm">View Investigation</a>
+                                            @endif
+                                        @endrole
+
                                         @role('Admin')
                                             @if (!isset($complaint->assigned_officer_id))
                                                 <a href="{{ route('investigation.show', $complaint->id) }}"
@@ -53,7 +58,7 @@
                                                     data-bs-target="#assignModal">Assign Officer</a>
                                             @else
                                                 <a href="{{ route('investigation.view', $complaint->id) }}"
-                                                    class="btn btn-info btn-sm">Investigation</a>
+                                                    class="btn btn-info btn-sm">View Investigation</a>
                                             @endif
                                         @endrole
 

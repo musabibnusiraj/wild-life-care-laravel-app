@@ -122,13 +122,6 @@
                                     <div data-i18n="Analytics">Complaints</div>
                                 </a>
                             </li>
-
-                            <li class="menu-item">
-                                <a href="{{ route('investigation.index') }}" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                                    <div data-i18n="Analytics">Investigations</div>
-                                </a>
-                            </li>
                         @endrole
 
                         @role('Admin')
