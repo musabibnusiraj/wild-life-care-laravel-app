@@ -29,14 +29,23 @@
 
                 <div class="row">
                     <div class="col-6 mb-3">
+                        <label for="username" class="form-label">Insvestigation Officer</label>
+                        <p><b> {{ $investigation->officer->user->name ?? '' }}</b></p>
+
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="username" class="form-label">Insvestigation Officer Badge Number</label>
+                        <p><b> {{ $investigation->officer->badge_number ?? '' }}</b></p>
+
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="username" class="form-label">Insvestigation Officer Phone</label>
+                        <p><b> {{ $investigation->officer->user->name ?? '' }}</b></p>
+
+                    </div>
+                    <div class="col-6 mb-3">
                         <label for="username" class="form-label">Insvestigation Note</label>
                         <p><b> {{ $investigation->notes ?? '' }}</b></p>
-
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
                     <div class="col-6 mb-3">
                         <label for="email" class="form-label">Status</label>
@@ -57,28 +66,7 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="col-6 mb-3">
-                        <label for="username" class="form-label">Insvestigation Officer</label>
-                        <p><b> {{ $investigation->officer->user->name ?? '' }}</b></p>
-
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="col-6 mb-3">
-                        <label for="username" class="form-label">Insvestigation Officer Badge Number</label>
-                        <p><b> {{ $investigation->officer->badge_number ?? '' }}</b></p>
-
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
                 </div>
-
 
                 <div class="row">
                     <div class=" col-3">

@@ -22,7 +22,6 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Description</th>
-                                <th>Images</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -33,10 +32,6 @@
                                     <td>{{ $complaint->subject }}</td>
                                     <td>{{ $complaint->description }}</td>
                                     <td>
-                                        @foreach ($complaint->attachments as $attachment)
-                                            <img src="{{ asset('storage/' . $attachment->file_path) }}" alt="Image"
-                                                class="img-thumbnail" width="50">
-                                        @endforeach
                                     </td>
                                     <td>
                                         @if ($complaint->status == 'submitted')
@@ -62,10 +57,18 @@
                                             @endif
                                         @endrole
 
+                                        @role('User')
+                                            @if (isset($complaint->assigned_officer_id))
+                                                <a href="{{ route('investigation.view', $complaint->id) }}"
+                                                    class="btn btn-info btn-sm">Investigation</a>
+                                            @endif
+                                        @endrole
 
                                         @role('Officer')
-                                            <a href="{{ route('investigation.edit', $complaint->id) }}"
-                                                class="btn btn-info btn-sm">View</a>
+                                            @if (isset($complaint->assigned_officer_id))
+                                                <a href="{{ route('investigation.edit', $complaint->institution->id) }}"
+                                                    class="btn btn-info btn-sm">Investigation Edit</a>
+                                            @endif
                                         @endrole
                                     </td>
 
