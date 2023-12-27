@@ -21,6 +21,11 @@ class Complaint extends Model
         return $this->belongsTo(Institution::class);
     }
 
+    public function officer()
+    {
+        return $this->belongsTo(Officer::class, 'assigned_officer_id');
+    }
+
     public function attachments()
     {
         return $this->hasMany(Attachment::class);

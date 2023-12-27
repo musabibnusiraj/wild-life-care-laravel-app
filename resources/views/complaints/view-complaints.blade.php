@@ -66,15 +66,22 @@
                                             @if (isset($complaint->assigned_officer_id))
                                                 <a href="{{ route('investigation.view', $complaint->id) }}"
                                                     class="btn btn-info btn-sm">Investigation</a>
+                                            @else
+                                                <a href="{{ route('complaint.edit', $complaint->id) }}"
+                                                    class="btn btn-secondary btn-sm">Edit Complaint</a>
                                             @endif
                                         @endrole
 
                                         @role('Officer')
                                             @if (isset($complaint->assigned_officer_id))
                                                 <a href="{{ route('investigation.edit', $complaint->institution->id) }}"
-                                                    class="btn btn-info btn-sm">Investigation Edit</a>
+                                                    class="btn btn-info btn-sm">Edit Investigation</a>
                                             @endif
                                         @endrole
+
+                                        <a href="{{ route('complaint.show', $complaint->id) }}"
+                                            class="btn btn-primary btn-sm">View Complaint</a>
+
                                     </td>
 
                                 </tr>

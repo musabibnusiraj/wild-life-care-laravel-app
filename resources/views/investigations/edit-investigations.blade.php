@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="card">
-            <h5 class="card-header">Create Investigations</h5>
+            <h5 class="card-header">Edit Investigations</h5>
             <div class="card-body">
                 <!-- Logo -->
                 <div class="app-brand justify-content-center">
@@ -26,13 +26,16 @@
                     </div>
                 @endif
 
-                <form id="formAuthentication" class="mb-3" action="{{ route('investigation.store') }}" method="POST">
+                <form id="formAuthentication" class="mb-3"
+                    action="{{ route('investigation.update', $investigation->id) }}" method="POST">
                     @csrf
+                    @method('PATCH')
+
                     <div class="row">
                         <div class="col-12 mb-3">
                             <label for="notes" class="form-label">Investigation Note</label>
                             <textarea id="notes" type="text" class="form-control @error('notes') is-invalid @enderror" name="notes"
-                                required autocomplete="notes" placeholder="Enter invetigation note" autofocus>{{ old('notes') }}</textarea>
+                                required autocomplete="notes" placeholder="Enter investigation note" autofocus>{{ $investigation->notes ?? old('notes') }}</textarea>
 
                             @error('notes')
                                 <span class="invalid-feedback" role="alert">
@@ -46,34 +49,19 @@
                             <label for="status" class="form-label">Investigation Status</label>
                             <select id="status" class="form-control @error('status') is-invalid @enderror"
                                 name="status">
-                                <option value="pending">Pending</option>
-                                <option value="in_progress">In Progress</option>
-                                <option value="completed">Completed</option>
+                                <option value="pending" {{ $investigation->status == 'pending' ? 'selected' : '' }}>Pending
+                                </option>
+                                <option value="in_progress" {{ $investigation->status == 'in_progress' ? 'selected' : '' }}>
+                                    In Progress</option>
+                                <option value="completed" {{ $investigation->status == 'completed' ? 'selected' : '' }}>
+                                    Completed</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="col-6 mb-3">
-                        <label for="branch" class="form-label">Complaints</label>
-                        <select id="branch"
-                            class="form-control text-capitalize 
-                            @error('branch') is-invalid @enderror"
-                            name="branch">
-                            @foreach ($complaints as $complaint)
-                                <option value="{{ $complaint->id }}" class="text-capitalize">
-                                    {{ $complaint->subject ?? '' }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('branch')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
 
                     <div class="row">
                         <div class=" col-3">
-                            <a href="{{ route('institution.index') }}" class="btn btn-dark d-grid w-100">Back</a>
+                            <a href="{{ route('investigation.index') }}" class="btn btn-dark d-grid w-100">Back</a>
                         </div>
                         <div class=" col-6">
                         </div>

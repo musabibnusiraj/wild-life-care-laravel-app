@@ -74,6 +74,7 @@ class InvestigationController extends Controller
     public function view($id)
     {
         $investigation = Investigation::where('complaint_id', $id)->first();
+
         return view('investigations.show-investigations', compact('investigation'));
     }
 
@@ -91,7 +92,7 @@ class InvestigationController extends Controller
      */
     public function edit(Investigation $investigation)
     {
-        //
+        return view('investigations.edit-investigations', compact('investigation'));
     }
 
     /**
@@ -99,7 +100,20 @@ class InvestigationController extends Controller
      */
     public function update(Request $request, Investigation $investigation)
     {
-        //
+        // Validate the incoming request data
+        $request->validate([
+            'notes' => 'required|string|max:255',
+            'status' => 'required|string|max:255'
+        ]);
+
+        // Update the institution
+        $investigation->update([
+            'notes' => $request['notes'],
+            'status' => $request['status']
+        ]);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Investigation updated successfully');
     }
 
     /**
