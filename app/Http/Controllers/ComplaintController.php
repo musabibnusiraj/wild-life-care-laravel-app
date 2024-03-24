@@ -24,7 +24,8 @@ class ComplaintController extends Controller
         if ($authUser->hasRole('User')) {
             $complaints = Complaint::where('user_id', $authUser->id)->get();
         } elseif ($authUser->hasRole('Officer')) {
-            $complaints = Complaint::where('assigned_officer_id', $authUser->id)->get();
+            $officer = Officer::where('user_id', $authUser->id)->first();
+            $complaints = Complaint::where('assigned_officer_id', $officer->id)->get();
         } elseif ($authUser->hasRole('Super-Admin')) {
             $complaints = Complaint::all();
         } elseif ($authUser->hasRole('Admin')) {
@@ -51,7 +52,7 @@ class ComplaintController extends Controller
                 'title' => 'required|string|max:255',
                 'description' => 'required|string',
                 'address' => 'required|string|max:255',
-                'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+                'images.*' => 'image|mimes:jpeg,png,jpg,gif'
             ]);
 
             // Start a database transaction
@@ -61,7 +62,7 @@ class ComplaintController extends Controller
 
             $complaint = Complaint::create([
                 'user_id' => $userId,
-                'institution_id' => 1,
+                'institution_id' => $request['institution_id'],
                 'subject' => $request['title'],
                 'description' => $request['description'],
             ]);
@@ -76,13 +77,16 @@ class ComplaintController extends Controller
             $images = $request->file('images');
 
             foreach ($images as $image) {
+                $timestamp = now()->timestamp;
+                $originalName = $image->getClientOriginalName();
+                $cleanedName = str_replace(' ', '_', $originalName);
                 $path = $image->storeAs(
                     'public/attachment',
-                    $image->getClientOriginalName()
+                    $timestamp . '_' . $cleanedName
                 );
                 Attachment::create([
                     'complaint_id' => $complaint->id,
-                    'file_path' => $path,
+                    'file_path' => 'storage/attachment/' . $timestamp . '_' . $cleanedName,
                 ]);
             }
 
@@ -94,20 +98,22 @@ class ComplaintController extends Controller
             // Rollback the transaction in case of an exception
             DB::rollBack();
 
-            // Log the exception for debugging
-            Log::error($e);
-
-            return redirect()->back()->with('error', 'Failed to submit complaint. Please try again.');
+            //// Log the exception for debugging
+            // Log::error($e);
+            // dd($e->getMessage());
+            return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
         }
     }
 
     public function show(Complaint $complaint)
     {
+        $complaint->load('attachments');
         return view('complaints.show-complaints', compact('complaint'));
     }
 
     public function edit(Complaint $complaint)
     {
+
         return view('complaints.edit-complaints', compact('complaint'));
     }
 
@@ -118,7 +124,7 @@ class ComplaintController extends Controller
                 'title' => 'required|string|max:255',
                 'description' => 'required|string',
                 'address' => 'required|string|max:255',
-                'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'images.*' => 'image|mimes:jpeg,png,jpg,gif',
             ]);
 
             // Start a database transaction
@@ -128,6 +134,7 @@ class ComplaintController extends Controller
             $complaint->update([
                 'subject' => $request['title'],
                 'description' => $request['description'],
+                'institution_id' => $request['institution_id']
             ]);
 
             // Update or create location details
@@ -141,14 +148,17 @@ class ComplaintController extends Controller
             $images = $request->file('images');
             if ($images) {
                 foreach ($images as $image) {
+                    $timestamp = now()->timestamp;
+                    $originalName = $image->getClientOriginalName();
+                    $cleanedName = str_replace(' ', '_', $originalName);
                     $path = $image->storeAs(
                         'public/attachment',
-                        $image->getClientOriginalName()
+                        $timestamp . '_' . $cleanedName
                     );
 
                     Attachment::updateOrCreate(
-                        ['complaint_id' => $complaint->id, 'file_path' => $path],
-                        ['file_path' => $path]
+                        ['complaint_id' => $complaint->id, 'file_path' => 'storage/attachment/' . $timestamp . '_' . $cleanedName],
+                        ['file_path' => 'storage/attachment/' . $timestamp . '_' . $cleanedName]
                     );
                 }
             }

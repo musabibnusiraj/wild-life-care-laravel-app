@@ -12,9 +12,10 @@
                     <div class="row">
                         <div class="col-5 mb-3">
                             <label for="institution">Select Institution:</label>
-                            <select class="form-control" name="institution" id="institution" required>
-                                <option value="wildlife">Wildlife Conservation</option>
-                                <option value="forest">Forest Conservation</option>
+                            <select class="form-control" name="institution_id" id="institution_id" required>
+                                <option value="1">Wildlife Conservation</option>
+                                <option value="2">Forest Conservation</option>
+                                <option value="3">Environmental Crime</option>
                             </select>
                         </div>
 
@@ -35,7 +36,7 @@
                         </div>
 
                         <div class="col-5 mb-3">
-                            <iframe id="googleMap"
+                            <iframe id="googleMap" class="d-none"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15841.57210708673!2d79.88265384477126!3d6.962877388600567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2586a6efd6df7%3A0x743fe749a0abfe00!2sPattiya%20North%2C%20Wattala!5e0!3m2!1sen!2slk!4v1703085245587!5m2!1sen!2slk"
                                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -49,13 +50,6 @@
                             <input type="file" class="form-control-file" name="images[]" id="images" multiple
                                 accept="image/*">
                         </div>
-
-                        <div class="col-5 mb-3">
-                            <label for="contact">Contact Number:</label>
-                            <input type="text" class="form-control" name="contact" id="contact" required>
-                        </div>
-
-
 
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Submit Complaint</button>

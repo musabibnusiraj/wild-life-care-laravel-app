@@ -69,6 +69,20 @@
                             </span>
                         @enderror
                     </div>
+                    <div class="col-6 mb-3">
+                        <label for="username" class="form-label">Attachments:</label>
+                        <ul>
+                            <div class="row">
+
+                                @foreach ($complaint->attachments as $attachment)
+                                    <div class=" col-3">
+                                        <a href="{{ asset($attachment->file_path) }}" target="_blank">
+                                            <img src="{{ asset($attachment->file_path) }}" alt="Attachment" width="100">
+                                        </a>
+                                    </div>
+                                @endforeach
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="row">

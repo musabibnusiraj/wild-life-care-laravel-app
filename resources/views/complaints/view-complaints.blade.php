@@ -29,7 +29,8 @@
                             @foreach ($complaints as $complaint)
                                 <tr>
                                     <td>{{ $complaint->subject }}</td>
-                                    <td>{{ $complaint->description }}</td>
+                                    <td style=" white-space: normal; width: 300px; ">
+                                        {{ \Str::limit($complaint->description, 100) }}</td>
 
                                     <td>
                                         @if ($complaint->status == 'submitted')
@@ -74,7 +75,7 @@
 
                                         @role('Officer')
                                             @if (isset($complaint->assigned_officer_id))
-                                                <a href="{{ route('investigation.edit', $complaint->institution->id) }}"
+                                                <a href="{{ route('investigation.edit', $complaint->investigation->id) }}"
                                                     class="btn btn-info btn-sm">Edit Investigation</a>
                                             @endif
                                         @endrole

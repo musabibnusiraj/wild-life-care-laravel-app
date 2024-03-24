@@ -42,5 +42,6 @@ class RoleSeeder extends Seeder
         $userRole->givePermissionTo('view-complaints');
         $userRole->givePermissionTo('create-complaints');
         $userRole->givePermissionTo('delete-complaints');
+        $userRole->givePermissionTo('view-investigations');
     }
 }

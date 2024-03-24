@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Complaint;
 use App\Models\Institution;
 use App\Models\Investigation;
+use App\Models\Officer;
 use Illuminate\Http\Request;
 
 class InvestigationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:view-investigations')->only(['index', 'show', 'view']);
+        // $this->middleware('permission:view-investigations')->only(['index', 'show', 'view']);
         $this->middleware('permission:create-investigations')->only(['create', 'store']);
         $this->middleware('permission:edit-investigations')->only(['edit', 'update', 'assignOfficer']);
         $this->middleware('permission:delete-investigations')->only(['delete']);
@@ -24,7 +25,8 @@ class InvestigationController extends Controller
     {
         $authUser = auth()->user();
         if ($authUser->hasRole('Officer')) {
-            $investigations = Investigation::where('officer_id', $authUser->id)->get();
+            $officer = Officer::where('user_id', $authUser->id)->first();
+            $investigations = Investigation::where('officer_id', $officer->id)->get();
         } elseif ($authUser->hasRole('Super-Admin')) {
             $investigations = Investigation::all();
         } else {
@@ -111,6 +113,23 @@ class InvestigationController extends Controller
             'notes' => $request['notes'],
             'status' => $request['status']
         ]);
+
+        if ($request['status'] == 'completed') {
+            $status = 'resolved';
+        } else {
+            $status = 'in_progress';
+        }
+
+        // Fetch the complaint associated with the investigation
+        $complaint = $investigation->complaint;
+
+        // Update the complaint status
+        if ($complaint) {
+            $complaint->update([
+                'status' => $status
+            ]);
+        }
+
 
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Investigation updated successfully');

@@ -31,9 +31,9 @@ class Complaint extends Model
         return $this->hasMany(Attachment::class);
     }
 
-    public function locations()
+    public function location()
     {
-        return $this->hasMany(Location::class);
+        return $this->hasOne(Location::class);
     }
 
     // Get the assigned officer
@@ -44,6 +44,6 @@ class Complaint extends Model
 
     public function investigation()
     {
-        return $this->belongsTo(Investigation::class);
+        return $this->hasOne(Investigation::class, 'complaint_id');
     }
 }
